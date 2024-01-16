@@ -15234,3 +15234,13 @@ File Path                                      PID  Runtime      # DAGs    # Err
 /opt/airflow/dags/sample_dag.py               2571  0.01s             1           0  0.10s           2024-01-16T16:37:53
 /opt/airflow/dags/dag_gdrive_to_postgres.py                           1           0  0.07s           2024-01-16T16:38:19
 ================================================================================
+[2024-01-16 16:38:53,816] {manager.py:803} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                      PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/sample_dag.py               2581  0.01s             1           0  0.08s           2024-01-16T16:38:23
+/opt/airflow/dags/dag_gdrive_to_postgres.py                           1           0  0.11s           2024-01-16T16:38:49
+================================================================================
+[2024-01-16 16:39:06,403] {manager.py:455} INFO - Exiting gracefully upon receiving signal 15
