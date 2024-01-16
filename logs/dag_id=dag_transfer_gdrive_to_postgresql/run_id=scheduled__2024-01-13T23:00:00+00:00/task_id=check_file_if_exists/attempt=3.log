@@ -1,0 +1,42 @@
+[2024-01-15 01:44:36,306] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists scheduled__2024-01-13T23:00:00+00:00 [queued]>
+[2024-01-15 01:44:36,310] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists scheduled__2024-01-13T23:00:00+00:00 [queued]>
+[2024-01-15 01:44:36,311] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-15 01:44:36,311] {taskinstance.py:1357} INFO - Starting attempt 3 of 3
+[2024-01-15 01:44:36,311] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-15 01:44:36,318] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): check_file_if_exists> on 2024-01-13 23:00:00+00:00
+[2024-01-15 01:44:36,321] {standard_task_runner.py:52} INFO - Started process 9361 to run task
+[2024-01-15 01:44:36,323] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'dag_transfer_gdrive_to_postgresql', 'check_file_if_exists', 'scheduled__2024-01-13T23:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/dag_gdrive_to_postgres.py', '--cfg-path', '/tmp/tmpk9xgs8su', '--error-file', '/tmp/tmp20numm2f']
+[2024-01-15 01:44:36,323] {standard_task_runner.py:80} INFO - Job 10: Subtask check_file_if_exists
+[2024-01-15 01:44:36,351] {task_command.py:369} INFO - Running <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists scheduled__2024-01-13T23:00:00+00:00 [running]> on host 3c1ede9470c0
+[2024-01-15 01:44:36,392] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_transfer_gdrive_to_postgresql
+AIRFLOW_CTX_TASK_ID=check_file_if_exists
+AIRFLOW_CTX_EXECUTION_DATE=2024-01-13T23:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2024-01-13T23:00:00+00:00
+[2024-01-15 01:44:36,411] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_gdrive_to_postgres.py", line 86, in _check_file_if_exist
+    creds = __authenticate()
+  File "/opt/airflow/dags/dag_gdrive_to_postgres.py", line 28, in __authenticate
+    __install_packages(packages_to_install)
+  File "/opt/airflow/dags/dag_gdrive_to_postgres.py", line 18, in __install_packages
+    subprocess.check_call('pip3', 'install', package)
+  File "/usr/local/lib/python3.7/subprocess.py", line 358, in check_call
+    retcode = call(*popenargs, **kwargs)
+  File "/usr/local/lib/python3.7/subprocess.py", line 339, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "/usr/local/lib/python3.7/subprocess.py", line 702, in __init__
+    raise TypeError("bufsize must be an integer")
+TypeError: bufsize must be an integer
+[2024-01-15 01:44:36,417] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=dag_transfer_gdrive_to_postgresql, task_id=check_file_if_exists, execution_date=20240113T230000, start_date=20240115T014436, end_date=20240115T014436
+[2024-01-15 01:44:36,422] {standard_task_runner.py:97} ERROR - Failed to execute job 10 for task check_file_if_exists (bufsize must be an integer; 9361)
+[2024-01-15 01:44:36,458] {local_task_job.py:156} INFO - Task exited with return code 1
+[2024-01-15 01:44:36,483] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
