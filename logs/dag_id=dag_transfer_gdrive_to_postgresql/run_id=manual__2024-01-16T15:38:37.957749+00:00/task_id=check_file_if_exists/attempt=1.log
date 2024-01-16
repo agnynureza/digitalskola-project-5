@@ -1,0 +1,51 @@
+[2024-01-16 15:38:39,733] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists manual__2024-01-16T15:38:37.957749+00:00 [queued]>
+[2024-01-16 15:38:39,740] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists manual__2024-01-16T15:38:37.957749+00:00 [queued]>
+[2024-01-16 15:38:39,741] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-16 15:38:39,741] {taskinstance.py:1357} INFO - Starting attempt 1 of 3
+[2024-01-16 15:38:39,741] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-16 15:38:39,751] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): check_file_if_exists> on 2024-01-16 15:38:37.957749+00:00
+[2024-01-16 15:38:39,754] {standard_task_runner.py:52} INFO - Started process 855 to run task
+[2024-01-16 15:38:39,757] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'dag_transfer_gdrive_to_postgresql', 'check_file_if_exists', 'manual__2024-01-16T15:38:37.957749+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/dag_gdrive_to_postgres.py', '--cfg-path', '/tmp/tmpjg7xwfed', '--error-file', '/tmp/tmplp3w9nny']
+[2024-01-16 15:38:39,758] {standard_task_runner.py:80} INFO - Job 24: Subtask check_file_if_exists
+[2024-01-16 15:38:39,794] {task_command.py:369} INFO - Running <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists manual__2024-01-16T15:38:37.957749+00:00 [running]> on host 3c1ede9470c0
+[2024-01-16 15:38:39,843] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_transfer_gdrive_to_postgresql
+AIRFLOW_CTX_TASK_ID=check_file_if_exists
+AIRFLOW_CTX_EXECUTION_DATE=2024-01-16T15:38:37.957749+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2024-01-16T15:38:37.957749+00:00
+[2024-01-16 15:38:39,844] {logging_mixin.py:115} INFO - masuk kesini woy
+[2024-01-16 15:38:39,844] {logging_mixin.py:115} INFO - 1
+[2024-01-16 15:38:39,862] {logging_mixin.py:115} INFO - 2
+[2024-01-16 15:38:39,863] {logging_mixin.py:115} INFO - authenticate start
+[2024-01-16 15:38:44,255] {logging_mixin.py:115} INFO - Successfully install google-api-python-client
+[2024-01-16 15:38:47,309] {logging_mixin.py:115} INFO - Successfully install google-auth-httplib2
+[2024-01-16 15:38:50,420] {logging_mixin.py:115} INFO - Successfully install google-auth
+[2024-01-16 15:38:53,384] {logging_mixin.py:115} INFO - Successfully install google-auth-oauthlib
+[2024-01-16 15:38:53,385] {logging_mixin.py:115} INFO - authenticate after install packages
+[2024-01-16 15:38:53,394] {logging_mixin.py:115} INFO - {
+  "token": "ya29.a0AfB_byDjo9uXOpTfa11pGhbkV5TwzBGT3-zp64kVJ4gJVAG5Jpl8YupOM3j9VH0ZniotfxrsR0j0D-UXaCxi0ACEYiZj2UFSQhS9jmCwTBC4D8kRk7MA4Q681jhhfJlu6Hjnl-NCTquCgHp5tvEaR6AwEfuz2WHW8XCwaCgYKAewSARMSFQHGX2Mi5a7pO9e3UHhALowUGfxjvA0171",
+  "refresh_token": "1//0gDIGWCrQ0eTWCgYIARAAGBASNwF-L9Ir_6zv2B2FhkmGi6bX4QONzgttohg7jHDOI5KMJCxmOeDx7Xu9zpUB8zgKAsxVZX7eKnE",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "client_id": "362841129103-mi8kcnjk2uk2hv5in782u9j7o9b4lj8b.apps.googleusercontent.com",
+  "client_secret": "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",
+  "scopes": [
+    "https://www.googleapis.com/auth/drive.metadata.readonly",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive.readonly",
+    "https://www.googleapis.com/auth/drive"
+  ],
+  "expiry": "2024-01-13T12:27:21.158492Z"
+}
+[2024-01-16 15:38:53,394] {logging_mixin.py:115} INFO - {'token': 'ya29.a0AfB_byDjo9uXOpTfa11pGhbkV5TwzBGT3-zp64kVJ4gJVAG5Jpl8YupOM3j9VH0ZniotfxrsR0j0D-UXaCxi0ACEYiZj2UFSQhS9jmCwTBC4D8kRk7MA4Q681jhhfJlu6Hjnl-NCTquCgHp5tvEaR6AwEfuz2WHW8XCwaCgYKAewSARMSFQHGX2Mi5a7pO9e3UHhALowUGfxjvA0171', 'refresh_token': '1//0gDIGWCrQ0eTWCgYIARAAGBASNwF-L9Ir_6zv2B2FhkmGi6bX4QONzgttohg7jHDOI5KMJCxmOeDx7Xu9zpUB8zgKAsxVZX7eKnE', 'token_uri': 'https://oauth2.googleapis.com/token', 'client_id': '362841129103-mi8kcnjk2uk2hv5in782u9j7o9b4lj8b.apps.googleusercontent.com', 'client_secret': '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', 'scopes': ['https://www.googleapis.com/auth/drive.metadata.readonly', 'https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/drive'], 'expiry': '2024-01-13T12:27:21.158492Z'}
+[2024-01-16 15:38:53,394] {logging_mixin.py:115} INFO - Credentials from token ya29.a0AfB_byDjo9uXOpTfa11pGhbkV5TwzBGT3-zp64kVJ4gJVAG5Jpl8YupOM3j9VH0ZniotfxrsR0j0D-UXaCxi0ACEYiZj2UFSQhS9jmCwTBC4D8kRk7MA4Q681jhhfJlu6Hjnl-NCTquCgHp5tvEaR6AwEfuz2WHW8XCwaCgYKAewSARMSFQHGX2Mi5a7pO9e3UHhALowUGfxjvA0171
+[2024-01-16 15:38:53,395] {logging_mixin.py:115} INFO - <google.oauth2.credentials.Credentials object at 0xffff9451b1d0>
+[2024-01-16 15:38:54,378] {google_auth_httplib2.py:242} INFO - Refreshing credentials due to a 401 response. Attempt 1/2.
+[2024-01-16 15:38:55,159] {logging_mixin.py:115} INFO - The 'dataset' files does not exist in 'Shared with me' in folder 'dataset'.
+[2024-01-16 15:38:55,161] {python.py:173} INFO - Done. Returned value was: end
+[2024-01-16 15:38:55,204] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=dag_transfer_gdrive_to_postgresql, task_id=check_file_if_exists, execution_date=20240116T153837, start_date=20240116T153839, end_date=20240116T153855
+[2024-01-16 15:38:55,226] {local_task_job.py:156} INFO - Task exited with return code 0
+[2024-01-16 15:38:55,251] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check

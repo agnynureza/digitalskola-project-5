@@ -15,25 +15,28 @@ SCOPES = ["https://www.googleapis.com/auth/drive.metadata.readonly",
 def __install_packages(package_list):
     for package in package_list: 
         try:
-            subprocess.check_call('pip3', 'install', package)
+            subprocess.check_call(['pip3', 'install', package])
             print(f'Successfully install {package}')
         except subprocess.CalledProcessError:
             print(f'Error install {package}')
+        except Exception as e:
+            print(f'Something went wrong {e}')
 
 def __authenticate():
     import json
-    from google.oauth2.credentials import Credentials
-    
-    packages_to_install = ['google-api-python-client', 'google-auth-httplib2', 'google-auth-oauthlib']
+
+    packages_to_install = ['google-api-python-client', 'google-auth-httplib2', 'google-auth', 'google-auth-oauthlib']
     __install_packages(packages_to_install)
     
+    from google.oauth2.credentials import Credentials
+        
     creds=None
     # get token from airflow variable
     token_path=Variable.get(key='dag_transfer_gdrive_to_postgresql')
     json_token=json.loads(token_path)
     
     if json_token:
-        print("Credentials from token", json_token ['token'] )
+        print("Credentials from token", json_token['token'] )
         creds = Credentials(
                     token=json_token['token'], 
                     refresh_token=json_token['refresh_token'], 
@@ -72,12 +75,6 @@ def __download_file(service, file_id, file_name):
 
     print (f"Downloaded file {file_name} from Google Drive.")
 
-def __compose_values(row):
-    return f"{row['IP']}_{row['UserAgent']}_{row['Country']}_{row['Languages']}_{row['Interests']}"
-
-def _check_file():
-    pass
-
 def _check_file_if_exist(ti):
     from googleapiclient.discovery import build
     from googleapiclient.errors import HttpError
@@ -88,22 +85,22 @@ def _check_file_if_exist(ti):
         
         dataset_folder_name='dataset'
         dataset_folders= __get_folders_id(service, dataset_folder_name)
-        
+
         if dataset_folders == []:
             print (f"The '{dataset_folder_name}' files does not exist in 'Shared with me' in folder 'dataset'.")
             return "end"
-        
+
         # get id of 'dataset' folder
         dataset_folder_id = dataset_folders[0]['id']
-        print(f"The. '{dataset_folder_name}' folder exists in 'Shared with me'.")
-        
+        print(f"The '{dataset_folder_name}' folder exists in 'Shared with me'.")
+
         # get files in 'dataset' folder
         dataset_files = (
             service.files()
             .list(q=f"'{dataset_folder_id}' in parents", pageSize=10, fields="nextPageToken,files(id,name)")
             .execute()
         ).get("files", [])
-        
+
         print("dataset_files:", dataset_files)
         
         if dataset_files != []:
@@ -113,7 +110,7 @@ def _check_file_if_exist(ti):
                 file_id = file['id']
                 __download_file(service, file_id, file_name)
                 list_name.append(file_name)
-
+  
             # push list_name to xcom
             ti.xcom_push(key="dataset_files", value=list_name)
             return "process_csv"
@@ -123,7 +120,10 @@ def _check_file_if_exist(ti):
         
     except HttpError as error:
         print(f"An error occurred: {error}")
-        
+
+def __compose_values(row):
+    return f"{row['IP']}_{row['UserAgent']}_{row['Country']}_{row['Languages']}_{row['Interests']}"
+
 def _process_csv(ti):
     import csv 
     
@@ -142,7 +142,7 @@ def _process_csv(ti):
                 # create CSV reader and writer objects
                 reader = csv.DictReader(csvfile)
                 fieldnames = reader.fieldnames + ["id"]
-                writer = csv.DictWriter(output_file, fieldnames=fieldnames)
+                writer = csv.DictWriter(output_csvfile, fieldnames=fieldnames)
                 
                 # write the header to the output CSV file
                 writer.writeheader()
@@ -155,7 +155,7 @@ def _process_csv(ti):
                 
                 list_processed_name.append(output_file)
             ti.xcom_push(key="list_processed_name", value=list_processed_name)
- 
+
 def __create_ddl(ti):
     import os
     
@@ -176,10 +176,10 @@ def __create_ddl(ti):
     );
     """
     connection = None
-    print ("Connecting to the PostgreSOL database... os.environ.get ('POSTGRES_USER')", os.environ.get ( 'POSTGRES_USER'))
+    print ("Connecting to the PostgreSOL database... os.environ.get ('POSTGRES_USER')", os.environ.get('POSTGRES_USER'))
     try:
-        connection = psycopg2(
-            host='localhost',
+        connection = psycopg2.connect(
+            host='172.19.0.1',
             port=5434,
             dbname='airflow',
             user='airflow',
@@ -202,10 +202,10 @@ def _upsert_data(ti):
     from sqlalchemy import create_engine
     
     db_params = {
-        'db_name': 'airflow',
+        'dbname': 'airflow',
         'user': 'airflow',
         'password': 'airflow',
-        'host': 'localhost',
+        'host':'172.19.0.1',
         'port': 5434
     }
     
@@ -219,7 +219,7 @@ def _upsert_data(ti):
         # conn = psycopg2, connect (**db_params)
         # cur = conn. cursor()
         # Load data into PostgreSOL using SOLAlchemy
-        engine = create_engine(f'postgresql://{db_params["user"]}: {db_params["password"]}@{db_params["host"]}: {db_params["port"]}/{db_params["dbname"]}')
+        engine = create_engine(f'postgresql://{db_params["user"]}:{db_params["password"]}@{db_params["host"]}:{db_params["port"]}/{db_params["dbname"]}')
         df.to_sql('network_data', engine, if_exists='replace', index=False)
         # Close the database connection
         # cur.close()

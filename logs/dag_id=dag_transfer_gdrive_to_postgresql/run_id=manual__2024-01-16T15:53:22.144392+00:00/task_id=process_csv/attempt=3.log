@@ -1,0 +1,32 @@
+[2024-01-16 16:03:38,983] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.process_csv manual__2024-01-16T15:53:22.144392+00:00 [queued]>
+[2024-01-16 16:03:38,990] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.process_csv manual__2024-01-16T15:53:22.144392+00:00 [queued]>
+[2024-01-16 16:03:38,990] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-16 16:03:38,990] {taskinstance.py:1357} INFO - Starting attempt 3 of 3
+[2024-01-16 16:03:38,990] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-16 16:03:39,000] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): process_csv> on 2024-01-16 15:53:22.144392+00:00
+[2024-01-16 16:03:39,004] {standard_task_runner.py:52} INFO - Started process 1593 to run task
+[2024-01-16 16:03:39,007] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'dag_transfer_gdrive_to_postgresql', 'process_csv', 'manual__2024-01-16T15:53:22.144392+00:00', '--job-id', '48', '--raw', '--subdir', 'DAGS_FOLDER/dag_gdrive_to_postgres.py', '--cfg-path', '/tmp/tmp5a57iz0c', '--error-file', '/tmp/tmppi6mqjxr']
+[2024-01-16 16:03:39,008] {standard_task_runner.py:80} INFO - Job 48: Subtask process_csv
+[2024-01-16 16:03:39,042] {task_command.py:369} INFO - Running <TaskInstance: dag_transfer_gdrive_to_postgresql.process_csv manual__2024-01-16T15:53:22.144392+00:00 [running]> on host 3c1ede9470c0
+[2024-01-16 16:03:39,088] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_transfer_gdrive_to_postgresql
+AIRFLOW_CTX_TASK_ID=process_csv
+AIRFLOW_CTX_EXECUTION_DATE=2024-01-16T15:53:22.144392+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=manual__2024-01-16T15:53:22.144392+00:00
+[2024-01-16 16:03:39,096] {taskinstance.py:1889} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_gdrive_to_postgres.py", line 135, in _process_csv
+    for file in dataset_files:
+TypeError: 'NoneType' object is not iterable
+[2024-01-16 16:03:39,102] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=dag_transfer_gdrive_to_postgresql, task_id=process_csv, execution_date=20240116T155322, start_date=20240116T160338, end_date=20240116T160339
+[2024-01-16 16:03:39,108] {standard_task_runner.py:97} ERROR - Failed to execute job 48 for task process_csv ('NoneType' object is not iterable; 1593)
+[2024-01-16 16:03:39,145] {local_task_job.py:156} INFO - Task exited with return code 1
+[2024-01-16 16:03:39,180] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

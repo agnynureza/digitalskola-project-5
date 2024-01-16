@@ -1,0 +1,32 @@
+[2024-01-16 15:45:21,825] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists manual__2024-01-16T15:45:20.290985+00:00 [queued]>
+[2024-01-16 15:45:21,835] {taskinstance.py:1159} INFO - Dependencies all met for <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists manual__2024-01-16T15:45:20.290985+00:00 [queued]>
+[2024-01-16 15:45:21,835] {taskinstance.py:1356} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-16 15:45:21,835] {taskinstance.py:1357} INFO - Starting attempt 1 of 3
+[2024-01-16 15:45:21,835] {taskinstance.py:1358} INFO - 
+--------------------------------------------------------------------------------
+[2024-01-16 15:45:21,844] {taskinstance.py:1377} INFO - Executing <Task(PythonOperator): check_file_if_exists> on 2024-01-16 15:45:20.290985+00:00
+[2024-01-16 15:45:21,847] {standard_task_runner.py:52} INFO - Started process 1067 to run task
+[2024-01-16 15:45:21,850] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'dag_transfer_gdrive_to_postgresql', 'check_file_if_exists', 'manual__2024-01-16T15:45:20.290985+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/dag_gdrive_to_postgres.py', '--cfg-path', '/tmp/tmp__rag7bu', '--error-file', '/tmp/tmp7vn1cm84']
+[2024-01-16 15:45:21,851] {standard_task_runner.py:80} INFO - Job 30: Subtask check_file_if_exists
+[2024-01-16 15:45:21,893] {task_command.py:369} INFO - Running <TaskInstance: dag_transfer_gdrive_to_postgresql.check_file_if_exists manual__2024-01-16T15:45:20.290985+00:00 [running]> on host 3c1ede9470c0
+[2024-01-16 15:45:21,944] {taskinstance.py:1571} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_transfer_gdrive_to_postgresql
+AIRFLOW_CTX_TASK_ID=check_file_if_exists
+AIRFLOW_CTX_EXECUTION_DATE=2024-01-16T15:45:20.290985+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2024-01-16T15:45:20.290985+00:00
+[2024-01-16 15:45:25,096] {logging_mixin.py:115} INFO - Successfully install google-api-python-client
+[2024-01-16 15:45:28,152] {logging_mixin.py:115} INFO - Successfully install google-auth-httplib2
+[2024-01-16 15:45:31,204] {logging_mixin.py:115} INFO - Successfully install google-auth
+[2024-01-16 15:45:34,272] {logging_mixin.py:115} INFO - Successfully install google-auth-oauthlib
+[2024-01-16 15:45:34,286] {logging_mixin.py:115} INFO - Credentials from token ya29.a0AfB_byDjo9uXOpTfa11pGhbkV5TwzBGT3-zp64kVJ4gJVAG5Jpl8YupOM3j9VH0ZniotfxrsR0j0D-UXaCxi0ACEYiZj2UFSQhS9jmCwTBC4D8kRk7MA4Q681jhhfJlu6Hjnl-NCTquCgHp5tvEaR6AwEfuz2WHW8XCwaCgYKAewSARMSFQHGX2Mi5a7pO9e3UHhALowUGfxjvA0171
+[2024-01-16 15:45:34,286] {logging_mixin.py:115} INFO - <google.oauth2.credentials.Credentials object at 0xffff945191d0>
+[2024-01-16 15:45:34,286] {logging_mixin.py:115} INFO - <google.oauth2.credentials.Credentials object at 0xffff945191d0>
+[2024-01-16 15:45:36,121] {google_auth_httplib2.py:242} INFO - Refreshing credentials due to a 401 response. Attempt 1/2.
+[2024-01-16 15:45:37,039] {logging_mixin.py:115} INFO - The 'dataset' files does not exist in 'Shared with me' in folder 'dataset'.
+[2024-01-16 15:45:37,040] {python.py:173} INFO - Done. Returned value was: end
+[2024-01-16 15:45:37,066] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=dag_transfer_gdrive_to_postgresql, task_id=check_file_if_exists, execution_date=20240116T154520, start_date=20240116T154521, end_date=20240116T154537
+[2024-01-16 15:45:37,085] {local_task_job.py:156} INFO - Task exited with return code 0
+[2024-01-16 15:45:37,109] {local_task_job.py:273} INFO - 1 downstream tasks scheduled from follow-on schedule check
